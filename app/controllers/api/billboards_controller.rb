@@ -1,9 +1,9 @@
-class Api::BillboardController < ApplicationController
+class Api::BillboardsController < ApplicationController
 
   before_action :set_billboard, only: [:show, :update, :destroy]
 
   def index
-    render json: billboard.all
+    render json: Billboard.all
   end
 
   def show
@@ -30,13 +30,13 @@ class Api::BillboardController < ApplicationController
 
   def destroy
     @billboard.destroy
-    render json: { message: 'Sub delete' }
+    render json: { message: 'Billboard delete' }
   end
 
   private
 
   def billboard_params
-    params.require(:sub).permit(:title)
+    params.require(:billboard).permit(:title, :genre, :description)
   end
 
   def set_billboard
